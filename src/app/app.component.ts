@@ -4,15 +4,11 @@ import { Component } from '@angular/core';
 	selector: 'app-root',
 	template: `
 		<h1>{{title}}</h1>
-		<app-character></app-character>
+		<app-navigation></app-navigation>	
+		<router-outlet></router-outlet>
 		<app-messages></app-messages>
 	`,
 	styles: [`
-		h1 {
-			//color: #369;
-			//font-family: Arial, Helvetica, sans-serif;
-			//font-size: 250%;
-		}
 	`]
 })
 export class AppComponent {

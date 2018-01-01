@@ -8,6 +8,9 @@ import { CharacterComponent } from './character/character.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
+import { AppRoutingModule } from './/app-routing.module';
+import { NavigationComponent } from './navigation/navigation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -15,11 +18,14 @@ import { MessageService } from './message.service';
 		AppComponent,
 		CharacterComponent,
 		CharacterDetailsComponent,
-		MessagesComponent
+		MessagesComponent,
+		NavigationComponent,
+		DashboardComponent
 	],
 	imports: [
 		BrowserModule,
-		FormsModule
+		FormsModule,
+		AppRoutingModule
 	],
 	providers: [
 		CharacterService,
