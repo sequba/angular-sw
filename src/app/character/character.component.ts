@@ -14,18 +14,7 @@ import { Character, HEROES } from '../character';
 				</a>
 			</li>
 		</ul>
-	<div *ngIf="selected" >
-		<h2>{{ selected.name | uppercase }} Details</h2>
-		<div>
-			<span>id: </span>{{selected.id}}
-		</div>
-		<div>
-			<label>
-				name:
-				<input [(ngModel)]="selected.name" placeholder="name">
-			</label>
-		</div>
-	</div>
+	<app-character-details [character]="selected"></app-character-details>
 	`,
 	styles: [`
 		.selected { font-weight: bold; } `]
