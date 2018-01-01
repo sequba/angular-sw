@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 	template: `
 		<h1>{{title}}</h1>
 		<app-character></app-character>
+		<app-messages></app-messages>
 	`,
 	styles: [`
 		h1 {

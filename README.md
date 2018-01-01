@@ -7,6 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## ToDo:
 
 -apply https://angular.io/guide/styleguide
+-get to know modules
 
 ## Development server
 
