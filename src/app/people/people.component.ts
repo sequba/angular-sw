@@ -8,7 +8,7 @@ import { Person } from '../person';
 	template: `
 		<ul>
 			<li *ngFor="let person of people">
-	        	<a>{{ person.name }}</a>
+				<a routerLink="/people/{{ person.id }}">{{ person.name }}</a>
 	    	</li>
 		</ul>
 		<div *ngIf="morePeopleUrl">

@@ -7,12 +7,14 @@ import { AppRoutingModule } from './/app-routing.module';
 import { PeopleService } from './people.service';
 import { PeopleComponent } from './people/people.component';
 import { LoggingService } from './logging.service';
+import { PersonDetailsComponent } from './person-details/person-details.component';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		PeopleComponent
+		PeopleComponent,
+		PersonDetailsComponent
 	],
 	imports: [
 		BrowserModule,

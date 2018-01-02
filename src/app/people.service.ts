@@ -9,7 +9,7 @@ import { LoggingService } from './logging.service';
 
 @Injectable()
 export class PeopleService {
-	url = 'https://swapi.co/api/people/';
+	url: string = 'https://swapi.co/api/people/';
 
 	noResult: PeopleBatch = {
 		results: [],
@@ -25,13 +25,29 @@ export class PeopleService {
 			url = this.url;
 		}
 		
-		this.logger.log('fetching people);
+		this.logger.log('fetching people');
 
 		return this.httpClient.get<PeopleBatch>(url)
 		.pipe(
 			tap(_ => this.logger.log('fetched people')),
+			map(response => this.extractIds(response)),
 			catchError(this.handleError('getPeople', this.noResult))
 		)
+	}
+
+	private extractId(person: Person): Person {
+		var numFromUrl = person.url.match(/[0-9]+/);
+		if(numFromUrl) {
+			person.id = parseInt(numFromUrl[0]);
+		}
+		return person;
+	}
+
+	private extractIds(batch: PeopleBatch): PeopleBatch {
+		var people = batch.results;
+		people = people.map(this.extractId);
+		batch.results = people;
+		return batch;
 	}
 
 	private handleError<T> (operation = 'operation', result: T) {
