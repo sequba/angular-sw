@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { PeopleService } from './people.service';
 import { PeopleComponent } from './people/people.component';
+import { LoggingService } from './logging.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { PeopleComponent } from './people/people.component';
 		HttpClientModule,
 		AppRoutingModule
 	],
-	providers: [ PeopleService ],
+	providers: [ PeopleService, LoggingService ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule { }

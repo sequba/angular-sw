@@ -18,8 +18,8 @@ export interface Person {
 }
 
 export interface PeopleBatch {
-	count: number;
-	next: string;
-	previous: string;
+	count?: number;
+	next?: string;
+	previous?: string;
 	results: Person[];
 }

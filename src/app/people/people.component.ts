@@ -11,19 +11,32 @@ import { Person } from '../person';
 	        	<a>{{ person.name }}</a>
 	    	</li>
 		</ul>
+		<div *ngIf="morePeopleUrl">
+			<button (click)="getPeople(morePeopleUrl)">Load more</button>
+		</div>
   	`,
 	styles: []
 })
 export class PeopleComponent implements OnInit {
-	people: Person[];
+	people: Person[] = [];
+	morePeopleUrl?: string;
+	peopleNum?: number;
 
 	constructor(
 		private peopleService: PeopleService
 	) { }
 
 	ngOnInit() {
-		this.peopleService.getPeople()
-			.subscribe(people => this.people = people);
+		this.getPeople();
+	}
+
+	getPeople(url?: string) {
+		this.peopleService.getPeople(url)
+			.subscribe(response => {
+				this.people = this.people.concat(response.results);
+				this.morePeopleUrl = response.next;
+				this.peopleNum = response.count;
+			});
 	}
 
 }
