@@ -8,13 +8,15 @@ import { Person } from '../person';
 @Component({
 	selector: 'app-person-details',
 	template: `
-		<h3>{{ person.name }}</h3>
-		<table>
-			<tr *ngFor="let key of visibleKeys">
-				<td>{{ key.printName }}</td>
-				<td>{{ person[key.key] }}</td>
-			</tr>
-		</table>
+		<div *ngIf="person">
+			<h3>{{ person.name }}</h3>
+			<table>
+				<tr *ngFor="let key of visibleKeys">
+					<td>{{ key.printName }}</td>
+					<td>{{ person[key.key] }}</td>
+				</tr>
+			</table>
+		</div>
 	`,
 	styles: []
 })
@@ -46,7 +48,7 @@ export class PersonDetailsComponent implements OnInit {
 		this.peopleService.getPerson(id)
 			.subscribe(response => {
 				if(response) {
-					this.person = response
+					this.person = response;
 				} else {
 					this.logger.log('Error. Try again?');
 				}

@@ -25,7 +25,7 @@ export class PeopleService {
 			url = this.url;
 		}
 
-		this.logger.log('fetching people');
+		this.logger.log('fetching people ' + url);
 
 		return this.httpClient.get<PeopleBatch>(url)
 		.pipe(
@@ -36,13 +36,13 @@ export class PeopleService {
 	}
 
 	getPerson(id: number): Observable<Person | null> {
-		var url = this.url + id;
+		var url = this.url + id + '/';
 
-		this.logger.log('fetching person');
+		this.logger.log('fetching person ' + url);
 
 		return this.httpClient.get<Person | null>(url)
 		.pipe(
-			tap(_ => this.logger.log('fetched person')),
+			tap(response => this.logger.log('fetched person')),
 			map(response => response ? this.extractId(response) : response ),
 			catchError(this.handleError('getPerson', null))
 		)
