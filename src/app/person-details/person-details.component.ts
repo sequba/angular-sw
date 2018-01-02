@@ -12,7 +12,7 @@ import { Person } from '../person';
 			<h3>{{ person.name }}</h3>
 			<table>
 				<tr *ngFor="let key of visibleKeys">
-					<td>{{ key.printName }}</td>
+					<td>{{ key.displayName }}:</td>
 					<td>{{ person[key.key] }}</td>
 				</tr>
 			</table>
@@ -21,8 +21,14 @@ import { Person } from '../person';
 	styles: []
 })
 export class PersonDetailsComponent implements OnInit {
-	visibleKeys: Array<{key: string, printName: string}> = [
-		{key: 'name', printName: 'Name'},
+	visibleKeys: Array<{key: string, displayName: string}> = [
+		{key: 'height', displayName: 'Height'},
+		{key: 'mass', displayName: 'Mass'},
+		{key: 'hair_color', displayName: 'Hair'},
+		{key: 'skin_color', displayName: 'Skin'},
+		{key: 'eye_color', displayName: 'Eyes'},
+		{key: 'birth_year', displayName: 'Year of birth'},
+		{key: 'gender', displayName: 'Gender'},
 	];
 
 	personId: number;
