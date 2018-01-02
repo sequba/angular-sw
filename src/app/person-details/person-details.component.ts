@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
+import { LoggingService } from '../logging.service';
+import { PeopleService } from '../people.service';
 import { Person } from '../person';
 
 @Component({
@@ -20,11 +23,33 @@ export class PersonDetailsComponent implements OnInit {
 		{key: 'name', printName: 'Name'},
 	];
 
+	personId: number;
 	person: Person;
 
-	constructor() { }
+	constructor(
+		private peopleService: PeopleService,
+		private logger: LoggingService,
+		private route: ActivatedRoute,
+	) { }
 
 	ngOnInit() {
+		var idParam = this.route.snapshot.paramMap.get('id');
+		if(idParam) {
+			this.personId = parseInt(idParam);
+			this.getPerson(this.personId);
+		} else {
+			this.logger.log('Error: no id parameter in url');
+		}
 	}
 
+	private getPerson(id: number) {
+		this.peopleService.getPerson(id)
+			.subscribe(response => {
+				if(response) {
+					this.person = response
+				} else {
+					this.logger.log('Error. Try again?');
+				}
+			});
+	}
 }
